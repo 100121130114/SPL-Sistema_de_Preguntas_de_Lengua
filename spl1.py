@@ -1,0 +1,39 @@
+import sys
+import random
+
+#lectura y limpieza de datos
+db=open(sys.argv[1]+".spl1", "r").read()
+db=db.replace("\n","")
+db=db.replace("\t","")
+db=db.replace(" ","")
+pr=db.split("$").copy()
+while '' in pr:
+    pr.remove('')
+for a in range(len(pr)):
+    pr[a]=pr[a].replace("_"," ")
+    pr[a]=pr[a].split("&").copy()
+
+# hellow &t& hola $ pink &m& rosa&pony&purpura
+
+c=[0]*len(pr)
+d=0
+while True:
+    if d == len(pr):
+        print("No quedan mas preguntas.")
+        exit()
+    a=int((random.random()*1000)%len(pr))
+    while c[a] == 1:
+        a=int((random.random()*1000)%len(pr))
+    b=pr[a]
+    if b[1] == 't':
+        print(f"Traduce {b[0].capitalize()}:")
+        if input(">").lower() == b[2].lower():
+            print("Correcto!")
+            c[a]=1
+            d+=1
+        else:
+            print(f"Mal!\nRespuesta correcta:\n\t{b[0].capitalize()} -> {b[2].capitalize()}")
+    elif b[1] == 'm':
+        
+        c[a]=1
+        d+=1
