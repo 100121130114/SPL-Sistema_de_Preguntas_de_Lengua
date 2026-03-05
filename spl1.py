@@ -9,9 +9,7 @@ while sys.argv[a] != "":
     if a == len(sys.argv)-1:
         break
     a+=1
-db=db.replace("\n","")
-db=db.replace("\t","")
-db=db.replace(" ","")
+db=db.replace("\n","").replace("\t","").replace(" ","")
 pr=db.split("$").copy()
 while '' in pr:
     pr.remove('')
